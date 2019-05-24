@@ -1,0 +1,54 @@
+<div *ngIf="user && user.chartDataSets">
+  <div class="container">
+    <div class="row">
+      <div class="col-5">
+        <img *ngIf="user.format_image == 0" src={{user.url_image}} width="159" height="159">
+        <img *ngIf="user.format_image == 1" [src]="user.safeUrl_image" width="159" height="159">
+        <img *ngIf="user.format_image == 2" src='http://www.gravatar.com/avatar/?d=mm' width="159" height="159">
+        <h5 class="media-heading">{{getFullName()}}</h5>
+      </div>
+      <div style="text-align:left" class="col-7">
+        <p><strong>Profesión:&nbsp;</strong>{{user.info.profession}}</p>
+        <p>
+          <strong>Edad:&nbsp;</strong>{{getUserAge()}}
+          <strong>&nbsp;FN:&nbsp;</strong>{{user.birthdate}}
+        </p>
+        <p><strong>Email:&nbsp;</strong>{{user.email}}</p>
+        <p><strong>Teléfono:&nbsp;</strong>{{user.phone}}</p>
+        <p><strong>Rut:&nbsp;</strong>{{user.rut}}-{{calculateDV()}}</p>
+      </div>
+    </div>
+  </div>
+  <div>
+    <p class="text-left">
+      <strong>Dirección: </strong>{{user.info.address}}
+    </p>
+  </div>
+  <hr>
+  <div style="font-size:large">
+    <span><strong>Skills: </strong></span>&nbsp;
+    <span class="badge badge-primary">
+      {{user.skills[0].name}}&nbsp;<span class="badge badge-light">{{user.skills[0].value}}</span>
+    </span>&nbsp;
+    <span class="badge badge-success">
+      {{user.skills[1].name}}&nbsp;<span class="badge badge-light">{{user.skills[1].value}}</span>
+    </span>&nbsp;
+    <span class="badge badge-danger">
+      {{user.skills[2].name}}&nbsp;<span class="badge badge-light">{{user.skills[2].value}}</span>
+    </span>&nbsp;
+    <span class="badge badge-warning">
+      {{user.skills[3].name}}&nbsp;<span class="badge badge-light">{{user.skills[3].value}}</span>
+    </span>&nbsp;
+  </div>
+  <br>
+  <div>
+    <div style="display: block" align="center">
+      <canvas baseChart
+              [datasets]="user.chartDataSets"
+              [labels]="user.skillNames"
+              [options]="barChartOptions"
+              [legend]="barChartLegend"
+              [chartType]="barChartType"></canvas>
+    </div>
+  </div>
+</div>

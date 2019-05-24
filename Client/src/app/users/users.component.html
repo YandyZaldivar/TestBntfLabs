@@ -1,0 +1,40 @@
+<h2>Test BNTF Labs: (Administrador de Usuarios)</h2>
+
+<p *ngIf="!loaded"><em>Cargando usuarios...</em></p>
+
+<div *ngIf="loaded">
+  <button type="button" class="btn btn-link btn-sm" (click)="createTestUserClick()"><strong>Crear usuario de prueba</strong></button>
+
+  <app-modal [show]="showModal" [customClass]="'custom_modal_class'" [closeCallback]="toggleModal">
+    <app-details [user]="user"></app-details>
+  </app-modal>
+
+  <app-modal [show]="showModalEdit" [customClass]="'custom_modal_class'" [closeCallback]="closeModalEdit">
+    <app-edit [user]="user" [email]="email" [phone]="phone" [address]="address"></app-edit>
+  </app-modal>
+
+  <table class='table table-striped table-sm' *ngIf="users">
+    <thead class="thead-dark">
+      <tr>
+        <th>Nombre</th>
+        <th>Apellido</th>
+        <th>Cargo</th>
+        <th>Correo</th>
+        <th>Perfil</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let user of users; let i = index">
+        <td>{{ getUserName(user) }}</td>
+        <td>{{ getUserLastName(user) }}</td>
+        <td>{{ user.info.profession }}</td>
+        <td>{{ user.email }}</td>
+        <td>
+          <button type="button" class="btn btn-primary btn-sm" (click)="detailsClick(user)">Ver</button>&nbsp;
+          <button type="button" class="btn btn-info btn-sm" (click)="editClick(user)">Editar</button>&nbsp;
+          <button type="button" class="btn btn-secondary btn-sm" (click)="deleteClick(i)">Eliminar</button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>

@@ -1,0 +1,14 @@
+{
+  "name": "testbntflabsserver",
+  "version": "0.0.0",
+  "description": "TestBntfLabsServer",
+  "main": "app.js",
+  "author": {
+    "name": ""
+  },
+  "dependencies": {
+    "cors": "^2.8.5",
+    "express": "^4.17.0",
+    "request": "^2.88.0"
+  }
+}
